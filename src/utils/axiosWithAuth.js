@@ -5,7 +5,7 @@ const axiosWithAuth = () => {
   return axios.create({
     baseURL: 'https://lambda-mud-test.herokuapp.com/',
     headers: {
-      authorization: token,
+      Authorization: `Token ${token}`,
     },
   });
 };

@@ -50,7 +50,9 @@ const Login = ({ history }) => {
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.key);
-        history.push('/home');
+        setTimeout(() => {
+          history.push('/home/');
+        }, 5000);
       })
       .catch((err) => {
         console.log(err);
