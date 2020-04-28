@@ -52,7 +52,7 @@ const Login = ({ history }) => {
         localStorage.setItem('token', res.data.key);
         setTimeout(() => {
           history.push('/home/');
-        }, 5000);
+        }, 1000);
       })
       .catch((err) => {
         console.log(err);

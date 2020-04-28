@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import React from 'react';
+import { Map } from './Map';
 
 export const Home = () => {
-  useEffect(() => {
-    axiosWithAuth()
-      .get('api/adv/init/')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-  return <div> Sneaky Sneaky</div>;
+  return (
+    <div>
+      <Map />
+    </div>
+  );
 };
