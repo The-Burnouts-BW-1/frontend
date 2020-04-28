@@ -1,26 +1,24 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import PrivateRoute from './utils/PrivateRoute';
+
+import Login from './components/Login';
+import Register from './components/Register';
+import { Home } from './components/Home';
 
 import { ThemeProvider } from '@chakra-ui/core';
-import * as theme from './theme';
+import customTheme from './theme';
 import './App.css';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <div className='App'>
-        <header className='App-header'>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className='App-link'
-            href='https://reactjs.org'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Learn React
-          </a>
-        </header>
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route path='/register' component={Register} />
+          <PrivateRoute path='/home' component={Home} />
+        </Switch>
       </div>
     </ThemeProvider>
   );
