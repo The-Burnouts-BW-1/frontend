@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import axiosWithAuth from '../utils/axiosWithAuth';
+import axios from 'axios';
 
 import {
   Button,
@@ -54,15 +54,18 @@ const Register = ({ history }) => {
   const submitForm = (creds) => {
     // Axios calls happen here
     console.log(creds);
-    axiosWithAuth()
-      .post('api/registration/', creds)
+    axios
+      .post(
+        'https://the-burnouts-production.herokuapp.com/api/registration/',
+        creds
+      )
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.key);
         history.push('/home');
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
   return (
@@ -192,7 +195,7 @@ const Register = ({ history }) => {
                     type='submit'
                     data-cy='loginSubmit'
                   >
-                    Login
+                    Register
                   </Button>
                 </Flex>
               </Flex>

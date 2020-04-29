@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { Graph } from 'react-d3-graph';
 
-import { Player } from './Player';
 import { Spinner } from '@chakra-ui/core';
 
 export const Map = () => {
@@ -15,8 +14,8 @@ export const Map = () => {
       .then((res) => {
         setRoom(res.data);
       })
-      .catch((error) => {
-        console.log('Error with rooms', error);
+      .catch((err) => {
+        console.log('Error with rooms', err.response);
       });
   }, []);
 
@@ -121,10 +120,7 @@ export const Map = () => {
   } else {
     return (
       <div>
-        <div>
-          <Graph id='graph-id' data={roomData} config={myConfig} />
-        </div>
-        <Player />
+        <Graph id='graph-id' data={roomData} config={myConfig} />
       </div>
     );
   }
