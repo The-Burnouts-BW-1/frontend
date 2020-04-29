@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { Graph } from 'react-d3-graph';
 
-import { Spinner } from '@chakra-ui/core';
+import { Spinner, Flex } from '@chakra-ui/core';
 
 export const Map = () => {
   const [room, setRoom] = useState([]);
@@ -119,9 +119,9 @@ export const Map = () => {
     );
   } else {
     return (
-      <div>
+      <Flex w='50%'>
         <Graph id='graph-id' data={roomData} config={myConfig} />
-      </div>
+      </Flex>
     );
   }
 };

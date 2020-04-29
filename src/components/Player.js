@@ -32,19 +32,6 @@ export const Player = () => {
     <Flex w='50%'>
       {/* player information */}
       <Flex flexDir='column' w='80%'>
-        <Flex border='1px' p='5' justify='center'>
-          <Flex flexDir='column'>
-            <h2>Welcome Back {player.name}</h2>
-            <Flex>
-              <h3>Your inventory</h3>
-            </Flex>
-            {!player.inventroy ? (
-              <p>Your inventory is empty</p>
-            ) : (
-              <p>{player.inventory}</p>
-            )}
-          </Flex>
-        </Flex>
         <Flex>
           <Flex h='300px' w='100%' justify='center' align='center'>
             <Button
@@ -80,24 +67,36 @@ export const Player = () => {
             </Button>
           </Flex>
         </Flex>
-      </Flex>
-      {/* all players */}
-      <Flex flexDir='column' w='20%' align='center'>
-        <Flex>
-          <h3>Users Online</h3>
-        </Flex>
-        <Flex flexDir='column'>
-          {!player.players ? (
-            <Spinner
-              thickness='4px'
-              speed='0.65s'
-              emptyColor='gray.200'
-              color='blue.500'
-              size='xl'
-            />
-          ) : (
-            player.players.map((i) => <p>{i}</p>)
-          )}
+        <Flex border='1px' p='5' justify='center'>
+          <Flex flexDir='column'>
+            <h2>Welcome Back {player.name}</h2>
+            <Flex>
+              <h3>Your inventory</h3>
+            </Flex>
+            {!player.inventroy ? (
+              <p>Your inventory is empty</p>
+            ) : (
+              <p>{player.inventory}</p>
+            )}
+            <Flex flexDir='column'>
+              <Flex>
+                <h3>Players in this room</h3>
+              </Flex>
+              <Flex flexDir='column'>
+                {!player.players ? (
+                  <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                  />
+                ) : (
+                  player.players.map((i) => <p key={i}>{i}</p>)
+                )}
+              </Flex>
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>

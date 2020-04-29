@@ -24,9 +24,9 @@ export const Home = ({ history }) => {
           </Flex>
         </header>
         <Flex flexDir='row'>
-          <Flex w='50%'>I AM THE MAP</Flex>
+          {/* <Flex w='50%'>I AM THE MAP</Flex> */}
 
-          {/* <Map /> */}
+          <Map />
           <Player />
         </Flex>
       </Flex>
