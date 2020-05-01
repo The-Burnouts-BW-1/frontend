@@ -12,6 +12,7 @@ export const Player = () => {
     axiosWithAuth()
       .post('/api/adv/move', { direction: i })
       .then((res) => {
+        console.log(res.data);
         setPlayer(res.data);
       })
       .catch((err) => {
@@ -73,6 +74,7 @@ export const Player = () => {
           <Flex flexDir='column'>
             <h2>Welcome Back {player.name}</h2>
             <p>Current room: {player.room_id}</p>
+            {player.error_msg ? <p>{player.error_msg}</p> : null}
             <Flex>
               <h3>Your inventory</h3>
             </Flex>
