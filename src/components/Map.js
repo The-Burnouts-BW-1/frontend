@@ -21,33 +21,36 @@ export const Map = () => {
   }, []);
 
   //create 2 place array for the graph to build the nodes
+  // place is the room
   let place = [];
 
   if (room.data && room.data.length > 0) {
     //console.log(room.data);
     let newRoom = room.data.map((i) => {
       // console.log('map', i);
+      // create the room with its location
       return { id: i.id, x: i.x, y: i.y };
     });
     place = newRoom;
   }
-
+  // place 2 is the connections, start and end point
   let place2 = [];
   if (room.data && room.data.length > 0) {
     let newRoom2 = room.data.map((i) => {
       if (i.room_id === 0) {
         i.room_id = 1;
       }
+      // grab the start point and then end point
       return { source: i.id, target: i.room_id };
     });
     place2 = newRoom2;
   }
-
+  // data for d3 graph
   const roomData = {
     nodes: place,
     links: place2,
   };
-
+  // stock config
   const myConfig = {
     automaticRearrangeAfterDropNode: false,
     collapsible: false,
