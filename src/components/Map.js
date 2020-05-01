@@ -26,7 +26,7 @@ export const Map = () => {
   if (room.data && room.data.length > 0) {
     //console.log(room.data);
     let newRoom = room.data.map((i) => {
-      console.log('map', i);
+      // console.log('map', i);
       return { id: i.id, x: i.x, y: i.y };
     });
     place = newRoom;
