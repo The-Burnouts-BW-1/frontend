@@ -72,7 +72,7 @@ export const Player = () => {
         <Flex border='1px' p='5' justify='center'>
           <Flex flexDir='column'>
             <h2>Welcome Back {player.name}</h2>
-            <p>Current room: {player.description}</p>
+            <p>Current room: {player.room_id}</p>
             <Flex>
               <h3>Your inventory</h3>
             </Flex>

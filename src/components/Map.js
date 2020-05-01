@@ -12,7 +12,7 @@ export const Map = () => {
     axiosWithAuth()
       .get('api/adv/rooms', room)
       .then((res) => {
-        //console.log('map', res.data.data);
+        console.log('map', res.data.data);
         setRoom(res.data);
       })
       .catch((err) => {
