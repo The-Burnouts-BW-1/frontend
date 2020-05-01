@@ -5,6 +5,19 @@ import { Flex, Button, Spinner } from '@chakra-ui/core';
 
 export const Player = () => {
   const [player, setPlayer] = useState([]);
+  const [move, setMove] = useState(false);
+
+  const movingPlayer = (i) => {
+    setMove(!move);
+    axiosWithAuth()
+      .post('/api/adv/move', { direction: i })
+      .then((res) => {
+        setPlayer(res.data);
+      })
+      .catch((err) => {
+        console.log('Error with sending dir', err.response);
+      });
+  };
   useEffect(() => {
     axiosWithAuth()
       .get('api/adv/init/', player)
@@ -15,18 +28,7 @@ export const Player = () => {
       .catch((err) => {
         console.log('Error with init', err.response);
       });
-  }, []);
-
-  const movingPlayer = (i) => {
-    axiosWithAuth()
-      .post('/api/adv/move', { direction: i })
-      .then((res) => {
-        setPlayer(res.data);
-      })
-      .catch((err) => {
-        console.log('Error with sending dir', err.response);
-      });
-  };
+  }, [move]);
 
   return (
     <Flex w='50%'>
@@ -70,6 +72,7 @@ export const Player = () => {
         <Flex border='1px' p='5' justify='center'>
           <Flex flexDir='column'>
             <h2>Welcome Back {player.name}</h2>
+            <p>Current room: {player.description}</p>
             <Flex>
               <h3>Your inventory</h3>
             </Flex>
