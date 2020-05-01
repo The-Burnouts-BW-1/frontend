@@ -1,13 +1,10 @@
 import React from 'react';
 import { Player } from './Player';
 import { Map } from './Map';
-import { Button, useColorMode, Flex, Switch } from '@chakra-ui/core';
+import { Button, Flex } from '@chakra-ui/core';
 
 export const Home = ({ history }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
-
   const logout = () => {
-    console.log('GARBAGE');
     localStorage.clear('token');
     history.push('/');
   };

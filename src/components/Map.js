@@ -12,6 +12,7 @@ export const Map = () => {
     axiosWithAuth()
       .get('api/adv/rooms', room)
       .then((res) => {
+        //console.log('map', res.data.data);
         setRoom(res.data);
       })
       .catch((err) => {
@@ -22,9 +23,9 @@ export const Map = () => {
   //create 2 place array for the graph to build the nodes
   let place = [];
 
-  if (room.rooms && room.rooms.length > 0) {
-    console.log(room.rooms);
-    let newRoom = room.rooms.map((i) => {
+  if (room.data && room.data.length > 0) {
+    //console.log(room.data);
+    let newRoom = room.data.map((i) => {
       console.log('map', i);
       return { id: i.id, x: i.x, y: i.y };
     });
@@ -32,9 +33,12 @@ export const Map = () => {
   }
 
   let place2 = [];
-  if (room.rooms && room.rooms.length > 0) {
-    let newRoom2 = room.rooms.map((i) => {
-      return { source: i.id, target: i.targets[0] };
+  if (room.data && room.data.length > 0) {
+    let newRoom2 = room.data.map((i) => {
+      if (i.room_id === 0) {
+        i.room_id = 1;
+      }
+      return { source: i.id, target: i.room_id };
     });
     place2 = newRoom2;
   }
@@ -50,7 +54,7 @@ export const Map = () => {
     directed: false,
     focusAnimationDuration: 0.75,
     focusZoom: 1,
-    height: 500,
+    height: 1200,
     highlightDegree: 1,
     highlightOpacity: 1,
     linkHighlightBehavior: false,
@@ -60,7 +64,7 @@ export const Map = () => {
     panAndZoom: false,
     staticGraph: false,
     staticGraphWithDragAndDrop: false,
-    width: 900,
+    width: 1440,
     d3: {
       alphaTarget: 0.05,
       gravity: -100,
@@ -107,7 +111,7 @@ export const Map = () => {
   };
 
   // loading spinner
-  if (!room.rooms) {
+  if (!room.data) {
     return (
       <Spinner
         thickness='4px'
@@ -119,7 +123,7 @@ export const Map = () => {
     );
   } else {
     return (
-      <Flex w='50%'>
+      <Flex w='100%'>
         <Graph id='graph-id' data={roomData} config={myConfig} />
       </Flex>
     );

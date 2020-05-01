@@ -56,7 +56,7 @@ const Register = ({ history }) => {
     console.log(creds);
     axios
       .post(
-        'https://the-burnouts-production.herokuapp.com/api/registration/',
+        'https://the-burnouts-production.herokuapp.com/api/registration',
         creds
       )
       .then((res) => {
